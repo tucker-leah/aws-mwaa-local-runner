@@ -4,7 +4,7 @@
     "executionRoleArn": "arn:aws:iam::441944353256:role/ecsTaskExecutionRole",
     "containerDefinitions": [{
         "name": "local-runner",
-        "image": "441944353256.dkr.ecr.us-west-2.amazonaws.com/v2.0.2-local-runner:latest",
+        "image": "441944353256.dkr.ecr.us-west-2.amazonaws.com/v2.0.2-local-runner",
         "portMappings": [{
             "containerPort": 80,
             "hostPort": 80,
