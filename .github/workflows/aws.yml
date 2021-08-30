@@ -13,6 +13,7 @@ env:
   ECS_TASK_DEFINITION: task-def.json  # the path to the Amazon ECS task definition
   CONTAINER_NAME: mwaa-cicd           # the name of the Amazon ECS container
   IMAGE_TAG: 2.0                      # the Amazon ECR container image tag
+  FULL_TAG: amazon/mwaa-local
 
 defaults:
   run:
@@ -47,13 +48,13 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          FULL_TAG: ${{ env.FULL_TAG }}
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
+          # Build the docker container and push it to ECR so that it can be deployed to ECS.
           ./mwaa-local-env build-image ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG .
+          docker image tag $FULL_TAG:IMAGE_TAG ${{ secrets.ECR_REPOSITORY_URI }}
           docker image push ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG
-          echo "::set-output name=image::${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG"
+          echo "::set-output name=image::${{ secrets.ECR_REPOSITORY_URI }}:$FULL_TAG"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
