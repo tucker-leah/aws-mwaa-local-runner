@@ -5,13 +5,12 @@ on:
     types: [ created ]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: mwaa-cicd           # set this to your Amazon ECR repository name
-  ECS_SERVICE: fargate-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: mwaa-cicd-ecs                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: task-def.json # set this to the path to your Amazon ECS task definition
-  CONTAINER_NAME: mwaa-cicd           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+  AWS_REGION: us-east-1               # set this to your AWS region, e.g. us-west-2
+  ECR_REPOSITORY: mwaa-cicd           # the Amazon ECR repository name
+  ECS_SERVICE: fargate-service        # the Amazon ECS service name
+  ECS_CLUSTER: mwaa-cicd-ecs          # the name of the Amazon ECS cluster name
+  ECS_TASK_DEFINITION: task-def.json  # the path to the Amazon ECS task definition
+  CONTAINER_NAME: mwaa-cicd           # the name of the Amazon ECS container
 
 defaults:
   run:
