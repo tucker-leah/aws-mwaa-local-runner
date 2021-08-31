@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1               # set this to your AWS region, e.g. us-west-2
   ECR_REPOSITORY: mwaa-cicd           # the Amazon ECR repository name
-  ECS_SERVICE: fargate-service        # the Amazon ECS service name
+  ECS_SERVICE: mwaa-cicd-ecs          # the Amazon ECS service name
   ECS_CLUSTER: mwaa-cicd-ecs          # the name of the Amazon ECS cluster name
   ECS_TASK_DEFINITION: task-def.json  # the path to the Amazon ECS task definition
   CONTAINER_NAME: mwaa-cicd-ecs       # the name of the Amazon ECS container
