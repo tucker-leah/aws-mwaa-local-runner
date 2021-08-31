@@ -52,8 +52,8 @@ jobs:
         run: |
           # Build the docker container and push it to ECR so that it can be deployed to ECS.
           ./mwaa-local-env build-image ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG .
-          docker image tag $FULL_TAG:$IMAGE_TAG ${{ secrets.ECR_REPOSITORY_URI }}
-          docker image push ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG
+          docker tag $FULL_TAG:$IMAGE_TAG ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG
+          docker push ${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG
           echo "::set-output name=image::${{ secrets.ECR_REPOSITORY_URI }}:$IMAGE_TAG"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
